@@ -78,5 +78,6 @@ private extension MCameraController {
     func notifyUserOfMediaCaptured(_ capturedMedia: MCameraMedia) {
         if let image = capturedMedia.image { config.onImageCaptured(image) }
         else if let video = capturedMedia.video { config.onVideoCaptured(video) }
+        cameraManager.resetCapturedMedia()
     }
 }
