@@ -150,6 +150,7 @@ private extension MCamera {
     func notifyUserOfMediaCaptured(_ capturedMedia: MCameraMedia) {
         if let image = capturedMedia.getImage() { config.imageCapturedAction(image, .init(mCamera: self)) }
         else if let video = capturedMedia.getVideo() { config.videoCapturedAction(video, .init(mCamera: self)) }
+        manager.resetCapturedMedia()
     }
 }
 

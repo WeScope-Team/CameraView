@@ -156,6 +156,10 @@ extension CameraManager {
     func setCapturedMedia(_ capturedMedia: MCameraMedia?) { withAnimation(.mSpring) {
         attributes.capturedMedia = capturedMedia
     }}
+    
+    func resetCapturedMedia() {
+        attributes.capturedMedia = nil
+    }
 }
 
 // MARK: Set Camera Output
