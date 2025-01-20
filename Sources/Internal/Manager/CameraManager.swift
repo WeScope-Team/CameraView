@@ -90,7 +90,8 @@ private extension CameraManager {
 
         try captureSession.add(output: captureVideoOutput)
     }
-    func startSession() { Task {
+    
+    func startSession() { Task { @MainActor in
         guard let device = getCameraInput()?.device else { return }
 
         try await startCaptureSession()
