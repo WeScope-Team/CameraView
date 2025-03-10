@@ -265,8 +265,11 @@ private extension CameraManager {
         default: return
     }}
     func animateCameraViewEntrance() {
-        UIView.animate(withDuration: 0.3, delay: 1.2) { [self] in cameraView.alpha = 1 }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [self] in isRunning = true }
+        UIView.animate(withDuration: 0.3, delay: 1.2) {
+            self.cameraView.alpha = 1
+        } completion: { [self] _ in
+            self.isRunning = true
+        }
     }
     func setupCameraInput(_ cameraPosition: CameraPosition) throws { switch cameraPosition {
         case .front: try setupInput(frontCameraInput)
