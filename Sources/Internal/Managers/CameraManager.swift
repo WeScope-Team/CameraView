@@ -68,6 +68,7 @@ public class CameraManager: NSObject, ObservableObject { init(_ attributes: Attr
     private(set) var cameraGridView: GridView!
     private(set) var cameraBlurView: UIImageView!
     private(set) var cameraFocusView: UIImageView = .create(image: .iconCrosshair, tintColor: .yellow, size: 92)
+    private(set) var cameraFrame: CGRect = .zero
 
     // MARK: Other Objects
     private var motionManager: CMMotionManager = .init()
@@ -187,8 +188,9 @@ private extension CameraManager {
         cameraLayer = .init(session: captureSession)
         cameraLayer.videoGravity = .resizeAspectFill
         cameraLayer.isHidden = true
-
+        
         cameraView.layer.addSublayer(cameraLayer)
+        cameraFrame = cameraLayer.superview?.frame ?? cameraView.frame
     }
     func initialiseCameraMetalView() {
         cameraMetalView = .init()
@@ -662,7 +664,7 @@ private extension CameraManager {
 private extension CameraManager {
     func createCaptureAnimationView() -> UIView {
         let view = UIView()
-        view.frame = cameraView.frame
+        view.frame = cameraFrame
         view.backgroundColor = .black
         view.alpha = 0
         return view
